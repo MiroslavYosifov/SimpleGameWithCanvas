@@ -1,35 +1,53 @@
-import { drawPlayground, drawSnake } from './draw/index.js';
-import { moveSnake } from './move/index.js';
+    import { App } from './app.js';
 
-let canvas;
-let canvasContext;
-
-let snakeProperties = {
-    snakeColor: "red",
-    snakeX: 0,
-    snakeY: 0,
-    snakeSizeX: 10,
-    snakeSizeY: 10,
-    snakeSpeedX: 5,
-    snakeSpeedY: 5
-}
-
-function main () {
-    canvas = document.getElementById('gameCanvas');
-    canvasContext = canvas.getContext('2d');
-
-
-    window.onkeydown = function(event) {
-        moveSnake(snakeProperties, event.key);
+    class Main {
+        handleEvent (e) {
+            new App().render();
+            console.log(e);
+        }
     };
-    // canvas.addEventListener('keypress', moveSnake);
 
-    setInterval (() => {
-        drawPlayground(canvas, canvasContext);
-        drawSnake( snakeProperties, canvasContext);
-        moveSnake( snakeProperties, null);
-    }, 1000);
-    
-}
+    document.addEventListener("DOMContentLoaded", new Main());
 
-main();
+
+
+    // import { drawPlayground, drawSnake } from './draw/index.js';
+    // import { snake } from './move/index.js';
+    // let canvas;
+    // let canvasContext;
+
+    // let snakeProperties = {
+    //     snakeColor: "red",
+    //     snakeX: 0,
+    //     snakeY: 0,
+    //     snakeSizeX: 10,
+    //     snakeSizeY: 10,
+    //     snakeSpeedX: 10,
+    //     snakeSpeedY: 10,
+    //     currentDirection: "ArrowRight",
+    //     snakeLength: 5
+    // };
+
+    // let moveCoordinatesStory = [];
+    // let snakeElements = [];
+
+    // (function main () {
+    //     canvas = document.getElementById('gameCanvas');
+    //     canvasContext = canvas.getContext('2d');
+
+    //     window.onkeydown = function(event) {
+    //         moveSnake(snakeElements, event.key);
+    //         // console.log(snakeProperties.snakeSpeedX, snakeProperties.snakeSpeedY);
+    //     };
+    //     // canvas.addEventListener('keypress', moveSnake);
+
+    //     let framePerSecond = 10;
+
+    //     setInterval (() => {
+    //         drawPlayground(canvas, canvasContext);
+    //         drawSnake(snakeElements , snakeProperties, canvasContext);
+    //         moveSnake( snakeElements, null);
+    //         // console.log(snakeElements);
+    //     }, 1000 / framePerSecond);
+        
+    // })();
