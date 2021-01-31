@@ -36,9 +36,9 @@ export class Snake {
     this.tail.pop();
     this.tail.unshift(newElement);
 
-    if(this.tail.length < 10) {
-      this.updatedSnake();
-    }
+    // if(this.tail.length < 10) {
+    //   this.updatedSnake();
+    // }
     
     this.drawSnake();
     
