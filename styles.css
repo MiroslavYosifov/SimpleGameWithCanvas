@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700,700i|Merriweather:400,400i,700,700i&display=swap');
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font: 14px/1.5 Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+    letter-spacing: 0.01em;
+    font-weight: 100;
+    font-family: "Fira Sans", Georgia, serif;
+}
+
+h1 { font-size: 2.4em; }
+h2 { font-size: 2.0em; }
+h3 { font-size: 1.8em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.0em; }
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+canvas {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    color: wheat;
+}
+
+body {
+    background: black;
+}
+
+header {
+    text-align: center;
+    padding: 2em;
+}
+
+header .title {
+    font-size: 4em;
+    color: green;
+    font-weight: bold;
+}
+
+.main-game-content {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+.main-game-content header {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    color: wheat;;
+}
+
+.main-game-content header h1 {
+    margin-right: auto;
+}
+
+.main-game-content header button {
+    background: rgb(100, 100, 100);
+    color: wheat;
+    border: 2px solid black;
+    border-right: none;
+    font-size: 1.4em;
+    font-weight: bold;
+    width: 8em;
+}
+
+.main-game-content header button:hover {
+    background: wheat;
+    color: rgb(100, 100, 100);;
+    cursor: pointer;
+}
+
+.main-game-content .game-wrapper {
+    border: 2px solid wheat;
+}

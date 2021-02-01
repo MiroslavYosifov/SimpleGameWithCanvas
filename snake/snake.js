@@ -1,22 +1,23 @@
 export class Snake {
-  constructor(x, y, scale) {
+  constructor(x, y, gridSize) {
+      this.gridSize = gridSize;
       this.x = x;
-      this.y = y;
-      this.moveSnakeElement = scale;
+      this.y = y
+      this.moveSnakeElement = gridSize;
       this.dX = 1;
       this.dY = 0;
-      this.width = scale;
-      this.height = scale;
-      this.tail = [{x: 0, y: 0},  {x: 20, y: 0},  {x: 40, y: 0},  {x: 60, y: 0},  {x: 80, y: 0}];
+      this.width = gridSize;
+      this.height = gridSize;
+      this.currentDirection = "ArrowRight";
+      this.tail = [{ x: gridSize * 4, y: 0 }, { x: gridSize * 3 , y: 0 }, { x: gridSize * 2, y: 0 }, { x: gridSize, y: 0 }];
       this.color = 'red';
       this.canvas = document.getElementById('gameCanvas');
       this.canvasContext = this.canvas.getContext('2d');
-  }
+  };
 
   drawSnake () {
     for (let index = 0; index <  this.tail.length; index++) {
-      this.canvasContext.fillStyle = 'lightblue';  
-      this.canvasContext.strokestyle = this.color;
+      this.canvasContext.fillStyle = index % 2 === 0 ? 'purple' : 'green';  
       this.canvasContext.fillRect(this.tail[index].x, this.tail[index].y, this.width, this.height);  
       this.canvasContext.strokeRect(this.tail[index].x, this.tail[index].y, this.width, this.height);
     }
@@ -24,51 +25,85 @@ export class Snake {
 
   updatedSnake() {
     this.tail.push(this.tail[this.tail.length-1]);
-  }
+  };
 
   moveSnake() {
-    if(this.dX === -1 &&  this.dY === 0) this.x -= this.moveSnakeElement;
-    if(this.dX === 1 &&  this.dY === 0) this.x += this.moveSnakeElement;
-    if(this.dX === 0 &&  this.dY === -1) this.y -= this.moveSnakeElement;
-    if(this.dX === 0 &&  this.dY === 1) this.y += this.moveSnakeElement;
-
+    if(this.dX === -1 &&  this.dY === 0) {
+      this.moveThroughWall();
+      this.x -= this.moveSnakeElement;
+    };
+    if(this.dX === 1 &&  this.dY === 0) {
+      this.moveThroughWall();
+      this.x += this.moveSnakeElement;
+    };
+    if(this.dX === 0 &&  this.dY === -1) {
+      this.moveThroughWall();
+      this.y -= this.moveSnakeElement;
+    };
+    if(this.dX === 0 &&  this.dY === 1) {
+      this.moveThroughWall();
+      this.y += this.moveSnakeElement;
+    };
     const newElement = { x: this.x, y: this.y };
     this.tail.pop();
     this.tail.unshift(newElement);
+  };
 
-    // if(this.tail.length < 10) {
-    //   this.updatedSnake();
-    // }
-    
-    this.drawSnake();
-    
+  moveThroughWall() {
+    if(this.x <= 0 && this.currentDirection === "ArrowLeft") {
+      this.x = this.canvas.width;
+    }
+    if(this.x >= this.canvas.width-this.gridSize && this.currentDirection === "ArrowRight") {
+      this.x = -this.gridSize;
+    }
+    if(this.y <= 0 && this.currentDirection === "ArrowUp") {
+      this.y = this.canvas.height;
+    }
+    if(this.y >= this.canvas.height-this.gridSize && this.currentDirection === "ArrowDown") {
+      this.y = -this.gridSize;
+    }
+  };
+
+  isDeath() {
+    for (let index = 2; index < this.tail.length; index++) {
+      if(this.x === this.tail[index].x && this.y === this.tail[index].y) {
+        console.log(this.tail[index]);
+        console.log(this.x, this.y);
+        return true;
+      }
+    }
+    return false
   }
 
   changeDirection(event) {
     if(event.key) {
-      if (event.key === "ArrowLeft" && this.dX !== -1) {
+      if (event.key === "ArrowLeft" && this.currentDirection !== "ArrowRight" && this.dX !== -1) {
         this.dX = -1;
         this.dY = 0;
+        this.currentDirection = event.key;
         console.log("ArrowLeft");
       }
   
-      if (event.key === "ArrowRight" && this.dX !== 1) {
+      if (event.key === "ArrowRight" && this.currentDirection !== "ArrowLeft" && this.dX !== 1) {
         this.dX = 1;
         this.dY = 0;
+        this.currentDirection = event.key;
         console.log("ArrowRight");
       }
   
-      if (event.key === "ArrowUp" && this.dY !== -1) {
+      if (event.key === "ArrowUp" && this.currentDirection !== "ArrowDown" && this.dY !== -1) {
         this.dX = 0;
         this.dY = -1;
+        this.currentDirection = event.key;
         console.log("ArrowUp");
       }
   
-      if (event.key === "ArrowDown" && this.dY !== 1) {
+      if (event.key === "ArrowDown" && this.currentDirection !== "ArrowUp" && this.dY !== 1) {
         this.dX = 0;
         this.dY = 1;
+        this.currentDirection = event.key;
         console.log("ArrowDown");
       }
     }
-  }
+  };
 }
