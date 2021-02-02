@@ -2,7 +2,7 @@ import { Game } from './game.js';
 
 class Main {
     handleEvent (e) {
-        new Game(20).render();
+        new Game(e).render();
         console.log(e);
     }
 };

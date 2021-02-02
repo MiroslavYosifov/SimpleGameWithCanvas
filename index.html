@@ -13,11 +13,14 @@
     </header>
     <main class="main-game-content">
         <header>
-            <h1>Score: 00</h1>
-            <button>Play</button>
-            <button>Pause</button>
+            <h1 id="ctx-score">Score: 00</h1>
+            <button id="ctx-play">Play</button>
+            <button id="ctx-pause">Pause</button>
         </header>
         <section class="game-wrapper">
+            <section class="module-message-content">
+                <h1 id="ctx-message"></h1>
+            </section>
             <canvas type="module" id="gameCanvas"></canvas>
         </section>
         <footer>
