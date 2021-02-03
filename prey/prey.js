@@ -16,8 +16,8 @@ export class Prey {
     };
 
     setNewLocation() {
-        this.x = Math.ceil((Math.random() * (this.canvas.width - 0)) / this.gridSize) * this.gridSize; //The maximum is inclusive and the minimum is inclusive
-        this.y = Math.ceil((Math.random() * (this.canvas.height - 0)) / this.gridSize) * this.gridSize; //The maximum is inclusive and the minimum is inclusive
+        this.x = Math.ceil((Math.random() * ((this.canvas.width - this.gridSize) - 0)) / this.gridSize) * this.gridSize; //The maximum is inclusive and the minimum is inclusive
+        this.y = Math.ceil((Math.random() * ((this.canvas.height - this.gridSize) - 0)) / this.gridSize) * this.gridSize; //The maximum is inclusive and the minimum is inclusive
         // return Math.round((Math.random() * (max - min) + min) / this.GRID_SIZE) * this.GRID_SIZE
     };
 

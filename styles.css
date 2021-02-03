@@ -36,8 +36,8 @@ li {
 canvas {
     box-sizing: border-box;
     display: block;
-    width: 100%;
     color: wheat;
+    width: 100%;
 }
 
 body {
@@ -89,6 +89,7 @@ header .title {
 }
 
 .main-game-content .game-wrapper {
+    width: 100%;
     position: relative;
     border: 2px solid wheat;
 }

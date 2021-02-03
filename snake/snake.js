@@ -9,6 +9,7 @@ export class Snake {
       this.width = gridSize;
       this.height = gridSize;
       this.currentDirection = "ArrowRight";
+      this.eventKey = "";
       this.tail = [{ x: gridSize * 4, y: 0 }, { x: gridSize * 3 , y: 0 }, { x: gridSize * 2, y: 0 }, { x: gridSize, y: 0 }];
       this.color = 'red';
       this.canvas = document.getElementById('gameCanvas');
@@ -47,6 +48,7 @@ export class Snake {
     const newElement = { x: this.x, y: this.y };
     this.tail.pop();
     this.tail.unshift(newElement);
+    this.changeDirection();
   };
 
   moveThroughWall() {
@@ -75,33 +77,37 @@ export class Snake {
     return false
   }
 
+  getDirection(event) {
+    this.eventKey = event.key;
+  }
+
   changeDirection(event) {
-    if(event.key) {
-      if (event.key === "ArrowLeft" && this.currentDirection !== "ArrowRight" && this.dX !== -1) {
+    if(this.eventKey) {
+      if (this.eventKey === "ArrowLeft" && this.currentDirection !== "ArrowRight" && this.dX !== -1) {
         this.dX = -1;
         this.dY = 0;
-        this.currentDirection = event.key;
+        this.currentDirection = this.eventKey;
         console.log("ArrowLeft");
       }
   
-      if (event.key === "ArrowRight" && this.currentDirection !== "ArrowLeft" && this.dX !== 1) {
+      if (this.eventKey === "ArrowRight" && this.currentDirection !== "ArrowLeft" && this.dX !== 1) {
         this.dX = 1;
         this.dY = 0;
-        this.currentDirection = event.key;
+        this.currentDirection = this.eventKey;
         console.log("ArrowRight");
       }
   
-      if (event.key === "ArrowUp" && this.currentDirection !== "ArrowDown" && this.dY !== -1) {
+      if (this.eventKey === "ArrowUp" && this.currentDirection !== "ArrowDown" && this.dY !== -1) {
         this.dX = 0;
         this.dY = -1;
-        this.currentDirection = event.key;
+        this.currentDirection = this.eventKey;
         console.log("ArrowUp");
       }
   
-      if (event.key === "ArrowDown" && this.currentDirection !== "ArrowUp" && this.dY !== 1) {
+      if (this.eventKey === "ArrowDown" && this.currentDirection !== "ArrowUp" && this.dY !== 1) {
         this.dX = 0;
         this.dY = 1;
-        this.currentDirection = event.key;
+        this.currentDirection = this.eventKey;
         console.log("ArrowDown");
       }
     }

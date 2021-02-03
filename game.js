@@ -3,7 +3,7 @@ import { Snake } from './snake/snake.js';
 import { Prey } from './prey/prey.js';
 import { Navigation } from './navigation/navigation.js';
 
-const gridSize = 30;
+const gridSize = 40;
 const snakeSize = gridSize * 4;
 const playgroundWidth = gridSize * 40;
 const playgroundHeight = gridSize * 18;
@@ -22,8 +22,9 @@ export class Game {
         this.navigation.startGame();
         this.navigation.pauseGame();
         this.navigation.onLoadGame();
+
         window.addEventListener('keydown', (event) => {
-            this.snake.changeDirection(event);
+            this.snake.getDirection(event);
         });
         
         const frames = 10;
