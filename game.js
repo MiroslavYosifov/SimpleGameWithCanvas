@@ -49,6 +49,6 @@ export class Game {
                 }
             };
            
-        }, 1000 / frames);
+        }, 1000);
     }
 };

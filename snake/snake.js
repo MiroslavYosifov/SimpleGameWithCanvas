@@ -17,6 +17,7 @@ export class Snake {
   };
 
   drawSnake () {
+    this.changeDirection();
     for (let index = 0; index <  this.tail.length; index++) {
       this.canvasContext.fillStyle = index % 2 === 0 ? 'purple' : 'green';  
       this.canvasContext.fillRect(this.tail[index].x, this.tail[index].y, this.width, this.height);  
@@ -48,7 +49,6 @@ export class Snake {
     const newElement = { x: this.x, y: this.y };
     this.tail.pop();
     this.tail.unshift(newElement);
-    this.changeDirection();
   };
 
   moveThroughWall() {
