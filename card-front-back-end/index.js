@@ -11,10 +11,13 @@ function flipCard (e) {
     
     if(!isSwitched) {
         card.classList.add('is-switched');
+        cardFront.classList.remove('is-active');
+        cardBack.classList.add('is-active');
         isSwitched = true;
     } else {
         card.classList.remove('is-switched');
+        cardBack.classList.remove('is-active');
+        cardFront.classList.add('is-active');
         isSwitched = false;
     }
 }
-
